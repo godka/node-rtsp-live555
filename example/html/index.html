@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <title>flv.js demo</title>
+
+    <style>
+        .mainContainer {
+            display: block;
+            width: 1024px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .selector {
+            width: 120px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .urlInput {
+            width: 60%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 8px;
+            margin-bottom: 8px;
+        }
+        
+        .centeredVideo {
+            display: block;
+            width: 100%;
+            height: 576px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: auto;
+        }
+        
+        .control {
+            display: block;
+            width: 70%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <script src="./dist/jquery.min.js"></script>
+    <script src="./dist/flv.js"></script>
+    <script src="./dist/core.js"></script>
+    <div class="mainContainer">
+        <div class="control">
+            <button id="search" onclick="startsearch()">Search</button>
+            <select class="selector" id="cameras" name="cameras" disabled="disabled"></select>
+            <label>username</label><input id="username" name="username" type="text" value="admin" />
+            <label>password</label><input id="password" name="password" type="text" value="admin" />
+            <button id="play" onclick="flv_load()" disabled="disabled">Play</button>
+        </div>
+        <video name="videoElement" class="centeredVideo" controls autoplay width="1024" height="576">
+            Your browser is too old which doesn't support HTML5 video.
+        </video>
+        <br>
+    </div>
+
+
+</body>
+
+</html>

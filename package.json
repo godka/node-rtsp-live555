@@ -1,0 +1,15 @@
+{
+  "name": "rtsp-live555",
+  "version": "1.3.0",
+  "description": "rtsp to flv",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "rtsp",
+    "flv"
+  ],
+  "author": "godka",
+  "license": "MIT"
+}

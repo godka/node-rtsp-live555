@@ -1,0 +1,17 @@
+{
+  "name": "node-rtsp-live555-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.3",
+    "onvif": "^0.5.3",
+    "rtsp-live555": "^1.2.0"
+  }
+}
