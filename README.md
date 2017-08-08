@@ -18,7 +18,8 @@ This is a wrapper which allows you to get RTSP stream from IPC and export in FLV
 The sample creates a web server at port 80 and scans RTSP address from IPC with onvif.A stream will be shown on the video element via flv.js when pressing 'play' button.
 
 ```javascript
-var stream = new rtsp.Live555Client({ input: 'rtsp://xx:xx@xxx.xxx.xxx.xxx/udp/av0_0' });
+var _url = 'rtsp://1029.mythkast.net/test.264';//test address
+var stream = new rtsp.Live555Client({ input: _url });
 stream.on('start', () => {
 	console.log(_url + ' started');
 });
