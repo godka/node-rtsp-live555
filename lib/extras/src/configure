@@ -1,0 +1,7 @@
+#!/bin/sh
+CMD_PATH=`dirname $0`
+cd $CMD_PATH/3rd-party/live555
+./genMakefiles linux
+make -j
+cd $CMD_PATH
+make

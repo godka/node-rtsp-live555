@@ -1,8 +1,8 @@
 CXX=g++
 CC=gcc
-CPPINCLUDE += -O3 -I/usr/local/include -I./src -I/usr/local/include/groupsock -I/usr/local/include/UsageEnvironment -I/usr/local/include/BasicUsageEnvironment -I/usr/local/include/liveMedia
+CPPINCLUDE += -O3 -I./3rd-party/live555/liveMedia/include -I./3rd-party/live555/BasicUsageEnvironment/include -I./3rd-party/live555/groupsock/include -I./3rd-party/live555/UsageEnvironment/include
 CPPFLAGS += $(CPPINCLUDE) -fpermissive -Wdeprecated-declarations -w -O3 -std=c++11
-CPPLDFLAGS += -L/usr/local/lib -lliveMedia -lBasicUsageEnvironment -lgroupsock -lUsageEnvironment
+CPPLDFLAGS += -L./3rd-party/live555/liveMedia -L./3rd-party/live555/BasicUsageEnvironment -L./3rd-party/live555/groupsock -L./3rd-party/live555/UsageEnvironment -lliveMedia -lBasicUsageEnvironment -lgroupsock -lUsageEnvironment
 CPPSOURCES=$(wildcard *.cpp)
 CPPOBJECTS=$(CPPSOURCES:.cpp=.o)
 CSOURCES=$(wildcard *.c)
