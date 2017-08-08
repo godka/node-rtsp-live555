@@ -3,15 +3,20 @@
     $('#cameras').attr("disabled", "disabled");
     $('#play').attr("disabled", "disabled");
     $.get('search', function (data) {
-        var index = 1;
-        for (var t in data) {
-            var p = data[t];
-            var tmp = '<option value=\"' + p.uri + '\">' + p.hostname + "</option>";
-            $('#cameras').append(tmp);
+        if (data.length > 0) {
+            $('#select-default').remove();
+            for (var t in data) {
+                var p = data[t];
+                var tmp = '<option value=\"' + p.uri + '\">' + p.hostname + "</option>";
+                $('#cameras').append(tmp);
+            }
+            $('#play').removeAttr("disabled");
+            $('#search').removeAttr("disabled");
+            $('#cameras').removeAttr("disabled");
+        } else {
+            $('#search').removeAttr("disabled");
+            $('#cameras').removeAttr("disabled");
         }
-        $('#play').removeAttr("disabled");
-        $('#search').removeAttr("disabled");
-        $('#cameras').removeAttr("disabled");
     });
 }
 function getRTSPlink(params) {

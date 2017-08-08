@@ -1,9 +1,13 @@
 #include "mythFLVClient.hh"
 #include <stdio.h>
-#include <io.h>
 #ifdef WIN32
 #include <Windows.h>
+#include <io.h>
+#else
+#include <time.h>
 #endif
+#include <stdlib.h>
+#include <memory.h>
 #define BUFSIZE 4096
 unsigned long mythFLVClient::mythTickCount(){
 #ifdef WIN32
@@ -123,7 +127,9 @@ mythFLVClient::~mythFLVClient()
 
 mythFLVClient::mythFLVClient()
 {
-	_setmode(_fileno(stdout), 0x8000);
+	#ifdef WIN32
+		_setmode(_fileno(stdout), 0x8000);
+	#endif
 	_hassendIframe = false;
 	_sps = nullptr; _pps = nullptr;
 	_spslen = 0; _ppslen = 0;

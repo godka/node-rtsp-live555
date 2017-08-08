@@ -9,7 +9,7 @@ try {
 var onvif = require('onvif');
 var Cam = require('onvif').Cam;
 
-var server = app.listen(80, function () {
+var server = app.listen(8080, function () {
 	var port = server.address().port;
 	console.log('listening at port:%s', port);
 });
@@ -49,23 +49,28 @@ app.get('/stream', (req, res) => {
 function searchForNextTick(res, myarray, cams, index) {
 	var cam = cams[index];
 	if (cam) {
-		cam.getStreamUri({ protocol: 'RTSP' }, function (err, stream) {
-			if (err) {
-				console.log(err);
-			} else {
-				console.log('rtsp url:' + stream.uri);
-				var result = {
-					uri: stream.uri,
-					hostname: cam.hostname
-				};
-				myarray.push(result);
-			}
-			if (index == cams.length)
-				res.send(myarray);
-			else {
-				searchForNextTick(res, myarray, cams, index + 1);
-			}
-		});
+		try {
+			cam.getStreamUri({ protocol: 'RTSP' }, function (err, stream) {
+				if (err) {
+					console.log(err);
+				} else {
+					console.log('rtsp url:' + stream.uri);
+					var result = {
+						uri: stream.uri,
+						hostname: cam.hostname
+					};
+					myarray.push(result);
+				}
+				if (index == cams.length)
+					res.send(myarray);
+				else {
+					searchForNextTick(res, myarray, cams, index + 1);
+				}
+			});
+		} catch (e) {
+			console.log('onvif error:', e);
+			res.send(myarray);
+		}
 	} else {
 		res.send(myarray);
 	}
