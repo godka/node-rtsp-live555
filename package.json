@@ -1,6 +1,6 @@
 {
   "name": "rtsp-live555",
-  "version": "1.5.1",
+  "version": "1.6.1",
   "description": "rtsp to flv",
   "main": "index.js",
   "scripts": {
@@ -11,5 +11,16 @@
     "flv"
   ],
   "author": "godka",
-  "license": "MIT"
+  "license": "MIT",
+  "directories": {
+    "example": "example"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/godka/node-rtsp-live555.git"
+  },
+  "bugs": {
+    "url": "https://github.com/godka/node-rtsp-live555/issues"
+  },
+  "homepage": "https://github.com/godka/node-rtsp-live555#readme"
 }
