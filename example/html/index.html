@@ -4,65 +4,50 @@
 <head>
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
     <title>flv.js demo</title>
-
-    <style>
-        .mainContainer {
-            display: block;
-            width: 1024px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .selector {
-            width: 120px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .urlInput {
-            width: 60%;
-            margin-left: auto;
-            margin-right: auto;
-            margin-top: 8px;
-            margin-bottom: 8px;
-        }
-        
-        .centeredVideo {
-            display: block;
-            width: 100%;
-            height: 576px;
-            margin-left: auto;
-            margin-right: auto;
-            margin-bottom: auto;
-        }
-        
-        .control {
-            display: block;
-            width: 70%;
-            margin-left: auto;
-            margin-right: auto;
-        }
-    </style>
+    <link href="./dist/core.css" rel="stylesheet">
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/bootstrap-select.css" media="screen" rel="stylesheet" type="text/css">
 </head>
 
 <body>
     <script src="./dist/jquery.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
     <script src="./dist/flv.js"></script>
     <script src="./dist/core.js"></script>
-    <div class="mainContainer">
-        <div class="control">
-            <button id="search" onclick="startsearch()">Search</button>
-            <select class="selector" id="cameras" name="cameras" disabled="disabled"></select>
-            <label>username</label><input id="username" name="username" type="text" value="admin" />
-            <label>password</label><input id="password" name="password" type="text" value="admin" />
-            <button id="play" onclick="flv_load()" disabled="disabled">Play</button>
+
+    <nav class="navbar navbar-inverse">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+                <a class="navbar-brand" href="https://github.com/godka/node-rtsp-live555">rtsp-live555 demo</a>
+            </div>
+            <!--/.nav-collapse -->
         </div>
-        <video name="videoElement" class="centeredVideo" controls autoplay width="1024" height="576">
+    </nav>
+
+    <div class="container">
+        <div class="form-inline">
+            <button id="search" type="button" class="btn btn-primary" onclick="startsearch()">Scan Cameras</button>
+            <select class="form-control" id="cameras" name="cameras">
+                <option id="select-default" value="#">No camera</option>
+            </select>
+        </div>
+        <div class="form-inline">
+            <input class="form-control" id="username" name="username" type="text" placeholder="Username" />
+            <input class="form-control" id="password" name="password" type="text" placeholder="Password" />
+            <button id="play" onclick="flv_load()" type="button" class="btn btn-success" disabled="disabled">Play</button>
+        </div>
+    </div>
+    <div class="container">
+        <video id="videoElement" name="videoElement" class="hidden" controls autoplay width="800" height="480">
             Your browser is too old which doesn't support HTML5 video.
         </video>
-        <br>
     </div>
-
 
 </body>
 

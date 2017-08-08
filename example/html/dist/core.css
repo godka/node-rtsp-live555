@@ -1,0 +1,35 @@
+        .mainContainer {
+            display: block;
+            width: 1024px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .selector {
+            width: 150px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .urlInput {
+            width: 60%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 8px;
+            margin-bottom: 8px;
+        }
+        
+        .centeredVideo {
+            display: block;
+            width: 100%;
+            height: 576px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: auto;
+        }
+        
+        .control {
+            display: block;
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+        }
