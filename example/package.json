@@ -11,6 +11,6 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.15.3",
-    "onvif": "^0.5.3",
+    "onvif": "^0.5.3" 
   }
 }
