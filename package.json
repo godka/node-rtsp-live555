@@ -1,6 +1,6 @@
 {
   "name": "rtsp-live555",
-  "version": "1.6.1",
+  "version": "1.6.2",
   "description": "rtsp to flv",
   "main": "index.js",
   "scripts": {
