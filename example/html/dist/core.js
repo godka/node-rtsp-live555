@@ -23,7 +23,7 @@ function getRTSPlink(params) {
     var _url = params.uri;
     var _user = params.username;
     var _pass = params.password;
-    if (_user != '' || _user != undefined) {
+    if (_user != '' && _user != undefined) {
         var _replaced_url = _url.replace('rtsp://', '');
         return 'rtsp://' + _user + ':' + _pass + '@' + _replaced_url;
     } else
