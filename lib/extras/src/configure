@@ -1,7 +1,14 @@
 #!/bin/sh
+OS=`uname`
 CMD_PATH=`dirname $0`
 cd $CMD_PATH/3rd-party/live555
-./genMakefiles linux
+if [ $OS=="Darwin" ];then
+    ./genMakefiles macosx
+elif [ $OS=="Linux" ];then
+    ./genMakefiles linux
+else
+    ./genMakefiles mingw
+fi
 make -j
 cd $CMD_PATH
 make
