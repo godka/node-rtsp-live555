@@ -1,17 +1,9 @@
+#指定运行环境
 language: node_js
-sudo: false
-env:
-  - CXX=g++-4.8 TRAVIS=true
-addons:
-  apt:
-    sources:
-    - ubuntu-toolchain-r-test
-    packages:
-    - g++-4.8
+#指定nodejs版本，可以指定多个
 node_js:
-  - "0.10"
-  - "0.12"
-  - "4"
-  - "6"
-  - "8"
-after_success: npm run test
+  - 6.9.2
+
+#运行的脚本命令
+script:
+  - npm run-script test-on-travis

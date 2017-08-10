@@ -1,10 +1,14 @@
 {
   "name": "rtsp-live555",
-  "version": "1.7.1",
+  "version": "1.7.2",
   "description": "rtsp to flv",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "jscs": "jscs lib/rtsp-live555.js",
+    "lint": "jshint lib/rtsp-live555.js",
+    "pretest": "npm run lint && npm run jscs",
+    "test-on-travis": "npm run pretest && istanbul cover _mocha --report lcovonly",
+    "test": "npm run test-on-travis"
   },
   "keywords": [
     "rtsp",
@@ -22,5 +26,11 @@
   "bugs": {
     "url": "https://github.com/godka/node-rtsp-live555/issues"
   },
-  "homepage": "https://github.com/godka/node-rtsp-live555#readme"
+  "homepage": "https://github.com/godka/node-rtsp-live555#readme",
+  "devDependencies": {
+    "istanbul": "^0.4.5",
+    "jscs": "^3.0.7",
+    "jsdoc": "^3.5.4",
+    "jshint": "^2.9.5"
+  }
 }
