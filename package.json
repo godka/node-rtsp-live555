@@ -6,8 +6,8 @@
   "scripts": {
     "jscs": "jscs lib/rtsp-live555.js",
     "lint": "jshint lib/rtsp-live555.js",
-    "pretest": "npm run lint && npm run jscs",
-    "test-on-travis": "npm run pretest && istanbul cover _mocha --report lcovonly",
+    "pretest": "npm run lint",
+    "test-on-travis": "npm run pretest",
     "test": "npm run test-on-travis"
   },
   "keywords": [
@@ -29,8 +29,9 @@
   "homepage": "https://github.com/godka/node-rtsp-live555#readme",
   "devDependencies": {
     "istanbul": "^0.4.5",
-    "jscs": "^3.0.7",
     "jsdoc": "^3.5.4",
-    "jshint": "^2.9.5"
+    "jshint": "^2.9.5",
+    "mocha": "^3.5.0",
+    "mocha-lcov-reporter": "^1.3.0"
   }
 }
