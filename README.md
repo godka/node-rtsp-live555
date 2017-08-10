@@ -1,4 +1,7 @@
 # rtsp-live555
+
+[![NPM](https://nodei.co/npm/rtsp-live555.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/rtsp-live555/)
+
 ## introduction
 
 This is a wrapper which allows you to get RTSP stream from IPC and export in FLV stream.
