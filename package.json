@@ -1,11 +1,11 @@
 {
   "name": "rtsp-live555",
-  "version": "1.7.6",
+  "version": "1.7.7",
   "description": "rtsp to flv",
   "main": "index.js",
   "scripts": {
     "lint": "jshint lib/rtsp-live555.js",
-    "pretest": "npm run lint && istanbul cover lib/rtsp-live555.js",
+    "pretest": "npm run lint",
     "test-on-travis": "npm run pretest",
     "test": "npm run test-on-travis"
   },
