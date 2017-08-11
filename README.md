@@ -1,6 +1,8 @@
 # rtsp-live555
+
 [![Build Status](https://travis-ci.org/godka/node-rtsp-live555.svg?branch=master)](https://travis-ci.org/godka/node-rtsp-live555)
-[![NPM](https://nodei.co/npm/rtsp-live555.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/rtsp-live555/)
+
+[![NPM](https://nodei.co/npm/rtsp-live555.png)](https://nodei.co/npm/rtsp-live555/)
 
 ## introduction
 
