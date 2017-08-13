@@ -1,13 +1,13 @@
 {
   "name": "rtsp-live555",
-  "version": "1.8.3",
+  "version": "1.8.4",
   "description": "rtsp to flv",
   "main": "index.js",
   "scripts": {
     "lint": "jshint lib/rtsp-live555.js",
     "pretest": "npm run lint",
     "test-on-travis": "npm run pretest",
-    "test": "npm run test-on-travis"
+    "test": "npm run test-on-travis && node test.js"
   },
   "keywords": [
     "rtsp",

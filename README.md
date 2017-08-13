@@ -20,7 +20,7 @@ This is a wrapper which allows you to get RTSP stream from IPC and export in FLV
 `git clone https://github.com/godka/node-rtsp-live555`
 
 ### Sample
-The sample creates a web server at port 8080 and scans RTSP address from IPC with onvif.A stream will be shown on the video element via flv.js when pressing 'play' button.
+The sample creates a web server at port 8080 and scans RTSP address from IPC with onvif.A stream will be shown on the video element via GrindPlayer(flash) and flv.js when pressing 'play' button.
 
 ```javascript
 var rtsp = null;
