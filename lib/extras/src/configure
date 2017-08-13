@@ -9,6 +9,6 @@ elif [ $OS=="Linux" ];then
 else
     ./genMakefiles mingw
 fi
-make -j
+make
 cd $CMD_PATH
 make

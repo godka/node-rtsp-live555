@@ -2,53 +2,53 @@
 <html>
 
 <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-    <title>flv.js demo</title>
-    <link href="./dist/core.css" rel="stylesheet">
-    <link href="./css/bootstrap.min.css" rel="stylesheet">
-    <link href="./css/bootstrap-select.css" media="screen" rel="stylesheet" type="text/css">
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+	<title>node-rtsp-live555 demo</title>
+	<link href="./dist/core.css" rel="stylesheet">
+	<link href="./css/bootstrap.min.css" rel="stylesheet">
+	<link href="./css/bootstrap-select.css" media="screen" rel="stylesheet" type="text/css">
 </head>
 
 <body>
-    <script src="./dist/jquery.min.js"></script>
-    <script src="./js/bootstrap.min.js"></script>
-    <script src="./dist/flv.js"></script>
-    <script src="./dist/core.js"></script>
+	<script src="./dist/jquery.min.js"></script>
+	<script src="./js/bootstrap.min.js"></script>
+	<script src="./js/swfobject.min.js"></script>
+  <script src="./dist/flv.js"></script>
+	<script src="./dist/core.js"></script>
+	<script type="text/javascript">
+	</script>
 
-    <nav class="navbar navbar-inverse">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+	<nav class="navbar navbar-inverse">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
               <span class="sr-only">Toggle navigation</span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-                <a class="navbar-brand" href="https://github.com/godka/node-rtsp-live555">rtsp-live555 demo</a>
-            </div>
-            <!--/.nav-collapse -->
-        </div>
-    </nav>
+				<a class="navbar-brand" href="https://github.com/godka/node-rtsp-live555">rtsp-live555 demo</a>
+			</div>
+			<!--/.nav-collapse -->
+		</div>
+	</nav>
 
-    <div class="container">
-        <div class="form-inline">
-            <button id="search" type="button" class="btn btn-primary" onclick="startsearch()">Scan Cameras</button>
-            <select class="form-control" id="cameras" name="cameras">
+	<div class="container">
+		<div class="form-inline">
+			<button id="search" type="button" class="btn btn-primary" onclick="startsearch()">Scan Cameras</button>
+			<select class="form-control" id="cameras" name="cameras">
                 <option id="select-default" value="#">No camera</option>
             </select>
-        </div>
-        <div class="form-inline">
-            <input class="form-control" id="username" name="username" type="text" placeholder="Username" />
-            <input class="form-control" id="password" name="password" type="text" placeholder="Password" />
-            <button id="play" onclick="flv_load()" type="button" class="btn btn-success" disabled="disabled">Play</button>
-        </div>
-    </div>
-    <div class="container">
-        <video id="videoElement" name="videoElement" controls autoplay width="800" height="480">
-            Your browser is too old which doesn't support HTML5 video.
-        </video>
-    </div>
-
+		</div>
+		<div class="form-inline">
+			<input class="form-control" id="username" name="username" type="text" placeholder="Username" />
+			<input class="form-control" id="password" name="password" type="text" placeholder="Password" />
+			<button id="play" onclick="playvideo()" type="button" class="btn btn-success" disabled="disabled">Play</button>
+		</div>
+	</div>
+	<div class="container" id="videocontainer">
+		
+	</div>
 </body>
 
 </html>

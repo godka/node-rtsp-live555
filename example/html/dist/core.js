@@ -29,6 +29,63 @@ function getRTSPlink(params) {
     } else
         return _url;
 }
+
+function jsbridge(playerId, event, data) {
+    switch (event) {
+        case "onJavaScriptBridgeCreated":
+            listStreams(teststreams, "streamlist");
+            break;
+        case "timeChange":
+        case "timeupdate":
+        case "progress":
+            break;
+        default:
+            console.log(event, data);
+    }
+}
+function playvideo() {
+    var version = swfobject.getFlashPlayerVersion();
+    console.log('flash version:', version.major);
+    if (version.major > 0) {
+        playswf();
+    } else {
+        flv_load();
+    }
+}
+function playswf() {
+    var _rtsplink = $("#cameras").val();
+    var _username = $('#username').val();;
+    var _password = $('#password').val();;
+    console.log(_rtsplink, ',', _username, ',', _password);
+    $('#videocontainer').append('<div id=\"VideoElement\"></div>')
+    var parameters = {
+        src: location.origin + "/stream?url=" + getRTSPlink({ uri: _rtsplink, username: _username, password: _password }),
+        autoPlay: "true",
+        controlBarAutoHide: "true",
+        controlBarPosition: "bottom",
+        poster: "images/poster.png",
+        javascriptCallbackFunction: "jsbridge"
+    };
+    console.log(parameters);
+    // Embed the player SWF:
+    swfobject.embedSWF(
+        "GrindPlayer.swf"
+        , "VideoElement"
+        , 800
+        , 480
+        , "10.2"
+        , "expressInstall.swf"
+        , parameters
+        ,
+        {
+            allowFullScreen: "true",
+            wmode: "transparent"
+        }
+        , {
+            name: "GrindPlayer"
+        }
+    );
+}
 function flv_load() {
     console.log('isSupported: ' + flvjs.isSupported());
     var _rtsplink = $("#cameras").val();
@@ -40,6 +97,7 @@ function flv_load() {
         "hasAudio": false
     };
     console.log(mediaDataSource.url);
+    $('#videocontainer').append('<video id=\"videoElement\" name=\"videoElement\" controls autoplay width=800 height=480>Your browser is too old which doesn\'t support HTML5 video.</video>')
     var element = document.getElementsByName('videoElement')[0];
     element.controls = false;
     if (typeof player !== "undefined") {
