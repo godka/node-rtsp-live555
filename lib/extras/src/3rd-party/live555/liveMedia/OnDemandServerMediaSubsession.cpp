@@ -1,7 +1,7 @@
 /**********
 This library is free software; you can redistribute it and/or modify it under
 the terms of the GNU Lesser General Public License as published by the
-Free Software Foundation; either version 2.1 of the License, or (at your
+Free Software Foundation; either version 3 of the License, or (at your
 option) any later version. (See <http://www.gnu.org/copyleft/lesser.html>.)
 
 This library is distributed in the hope that it will be useful, but WITHOUT
@@ -14,7 +14,7 @@ along with this library; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
 **********/
 // "liveMedia"
-// Copyright (c) 1996-2016 Live Networks, Inc.  All rights reserved.
+// Copyright (c) 1996-2017 Live Networks, Inc.  All rights reserved.
 // A 'ServerMediaSubsession' object that creates new, unicast, "RTPSink"s
 // on demand.
 // Implementation
@@ -200,7 +200,7 @@ void OnDemandServerMediaSubsession
   } else { // TCP
     destinations = new Destinations(tcpSocketNum, rtpChannelId, rtcpChannelId);
   }
-  fDestinationsHashTable->Add((char const*)(&clientSessionId), destinations);
+  fDestinationsHashTable->Add((char const*)clientSessionId, destinations);
 }
 
 void OnDemandServerMediaSubsession::startStream(unsigned clientSessionId,
@@ -213,7 +213,7 @@ void OnDemandServerMediaSubsession::startStream(unsigned clientSessionId,
 						void* serverRequestAlternativeByteHandlerClientData) {
   StreamState* streamState = (StreamState*)streamToken;
   Destinations* destinations
-    = (Destinations*)(fDestinationsHashTable->Lookup((char const*)(&clientSessionId)));
+    = (Destinations*)(fDestinationsHashTable->Lookup((char const*)clientSessionId));
   if (streamState != NULL) {
     streamState->startPlaying(destinations, clientSessionId,
 			      rtcpRRHandler, rtcpRRHandlerClientData,
@@ -337,9 +337,9 @@ void OnDemandServerMediaSubsession::deleteStream(unsigned clientSessionId,
 
   // Look up (and remove) the destinations for this client session:
   Destinations* destinations
-    = (Destinations*)(fDestinationsHashTable->Lookup((char const*)(&clientSessionId)));
+    = (Destinations*)(fDestinationsHashTable->Lookup((char const*)clientSessionId));
   if (destinations != NULL) {
-    fDestinationsHashTable->Remove((char const*)(&clientSessionId));
+    fDestinationsHashTable->Remove((char const*)clientSessionId);
 
     // Stop streaming to these destinations:
     if (streamState != NULL) streamState->endPlaying(destinations, clientSessionId);

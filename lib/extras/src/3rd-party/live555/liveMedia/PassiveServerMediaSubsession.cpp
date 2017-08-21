@@ -1,7 +1,7 @@
 /**********
 This library is free software; you can redistribute it and/or modify it under
 the terms of the GNU Lesser General Public License as published by the
-Free Software Foundation; either version 2.1 of the License, or (at your
+Free Software Foundation; either version 3 of the License, or (at your
 option) any later version. (See <http://www.gnu.org/copyleft/lesser.html>.)
 
 This library is distributed in the hope that it will be useful, but WITHOUT
@@ -14,7 +14,7 @@ along with this library; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
 **********/
 // "liveMedia"
-// Copyright (c) 1996-2016 Live Networks, Inc.  All rights reserved.
+// Copyright (c) 1996-2017 Live Networks, Inc.  All rights reserved.
 // A 'ServerMediaSubsession' object that represents an existing
 // 'RTPSink', rather than one that creates new 'RTPSink's on demand.
 // Implementation
@@ -162,7 +162,7 @@ void PassiveServerMediaSubsession
 
   // Make a record of this client's source - for RTCP RR handling:
   RTCPSourceRecord* source = new RTCPSourceRecord(clientAddress, clientRTCPPort);
-  fClientRTCPSourceRecords->Add((char const*)(&clientSessionId), source);
+  fClientRTCPSourceRecords->Add((char const*)clientSessionId, source);
 }
 
 void PassiveServerMediaSubsession::startStream(unsigned clientSessionId,
@@ -189,7 +189,7 @@ void PassiveServerMediaSubsession::startStream(unsigned clientSessionId,
     fRTCPInstance->sendReport();
 
     // Set up the handler for incoming RTCP "RR" packets from this client:
-    RTCPSourceRecord* source = (RTCPSourceRecord*)(fClientRTCPSourceRecords->Lookup((char const*)(&clientSessionId)));
+    RTCPSourceRecord* source = (RTCPSourceRecord*)(fClientRTCPSourceRecords->Lookup((char const*)clientSessionId));
     if (source != NULL) {
       fRTCPInstance->setSpecificRRHandler(source->addr, source->port,
 					  rtcpRRHandler, rtcpRRHandlerClientData);
@@ -216,13 +216,13 @@ void PassiveServerMediaSubsession
 
 void PassiveServerMediaSubsession::deleteStream(unsigned clientSessionId, void*& /*streamToken*/) {
   // Lookup and remove the 'RTCPSourceRecord' for this client.  Also turn off RTCP "RR" handling:
-  RTCPSourceRecord* source = (RTCPSourceRecord*)(fClientRTCPSourceRecords->Lookup((char const*)(&clientSessionId)));
+  RTCPSourceRecord* source = (RTCPSourceRecord*)(fClientRTCPSourceRecords->Lookup((char const*)clientSessionId));
   if (source != NULL) {
     if (fRTCPInstance != NULL) {
       fRTCPInstance->unsetSpecificRRHandler(source->addr, source->port);
     }
 
-    fClientRTCPSourceRecords->Remove((char const*)(&clientSessionId));
+    fClientRTCPSourceRecords->Remove((char const*)clientSessionId);
     delete source;
   }
 }

@@ -1,7 +1,7 @@
 /**********
 This library is free software; you can redistribute it and/or modify it under
 the terms of the GNU Lesser General Public License as published by the
-Free Software Foundation; either version 2.1 of the License, or (at your
+Free Software Foundation; either version 3 of the License, or (at your
 option) any later version. (See <http://www.gnu.org/copyleft/lesser.html>.)
 
 This library is distributed in the hope that it will be useful, but WITHOUT
@@ -14,7 +14,7 @@ along with this library; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
 **********/
 // "liveMedia"
-// Copyright (c) 1996-2016 Live Networks, Inc.  All rights reserved.
+// Copyright (c) 1996-2017 Live Networks, Inc.  All rights reserved.
 // A class that encapsulates a Matroska file.
 // Implementation
 
@@ -65,9 +65,8 @@ private:
   unsigned fBlockNumWithinCluster; // 0-based
 };
 
-#ifdef DEBUG
 UsageEnvironment& operator<<(UsageEnvironment& env, const CuePoint* cuePoint); // used for debugging
-#endif
+
 
 ////////// MatroskaTrackTable definition /////////
 
@@ -633,13 +632,13 @@ MatroskaTrackTable::~MatroskaTrackTable() {
 } 
 
 void MatroskaTrackTable::add(MatroskaTrack* newTrack, unsigned trackNumber) {
-  if (newTrack != NULL && newTrack->trackNumber != 0) fTable->Remove((char const*)(&(newTrack->trackNumber)));
-  MatroskaTrack* existingTrack = (MatroskaTrack*)fTable->Add((char const*)(&trackNumber), newTrack);
+  if (newTrack != NULL && newTrack->trackNumber != 0) fTable->Remove((char const*)newTrack->trackNumber);
+  MatroskaTrack* existingTrack = (MatroskaTrack*)fTable->Add((char const*)trackNumber, newTrack);
   delete existingTrack; // in case it wasn't NULL
 }
 
 MatroskaTrack* MatroskaTrackTable::lookup(unsigned trackNumber) {
-  return (MatroskaTrack*)fTable->Lookup((char const*)(&trackNumber));
+  return (MatroskaTrack*)fTable->Lookup((char const*)trackNumber);
 }
 
 unsigned MatroskaTrackTable::numTracks() const { return fTable->numEntries(); }
@@ -726,16 +725,16 @@ FramedSource* MatroskaDemux::newDemuxedTrackByTrackNumber(unsigned trackNumber) 
   if (trackNumber == 0) return NULL;
 
   FramedSource* trackSource = new MatroskaDemuxedTrack(envir(), trackNumber, *this);
-  fDemuxedTracksTable->Add((char const*)(&trackNumber), trackSource);
+  fDemuxedTracksTable->Add((char const*)trackNumber, trackSource);
   return trackSource;
 }
 
 MatroskaDemuxedTrack* MatroskaDemux::lookupDemuxedTrack(unsigned trackNumber) {
-  return (MatroskaDemuxedTrack*)fDemuxedTracksTable->Lookup((char const*)(&trackNumber));
+  return (MatroskaDemuxedTrack*)fDemuxedTracksTable->Lookup((char const*)trackNumber);
 }
 
 void MatroskaDemux::removeTrack(unsigned trackNumber) {
-  fDemuxedTracksTable->Remove((char const*)(&trackNumber));
+  fDemuxedTracksTable->Remove((char const*)trackNumber);
   if (fDemuxedTracksTable->numEntries() == 0) {
     // We no longer have any demuxed tracks, so delete ourselves now:
     Medium::close(this);

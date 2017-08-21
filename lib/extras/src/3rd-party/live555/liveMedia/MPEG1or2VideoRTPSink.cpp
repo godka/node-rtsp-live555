@@ -1,7 +1,7 @@
 /**********
 This library is free software; you can redistribute it and/or modify it under
 the terms of the GNU Lesser General Public License as published by the
-Free Software Foundation; either version 2.1 of the License, or (at your
+Free Software Foundation; either version 3 of the License, or (at your
 option) any later version. (See <http://www.gnu.org/copyleft/lesser.html>.)
 
 This library is distributed in the hope that it will be useful, but WITHOUT
@@ -14,7 +14,7 @@ along with this library; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
 **********/
 // "liveMedia"
-// Copyright (c) 1996-2016 Live Networks, Inc.  All rights reserved.
+// Copyright (c) 1996-2017 Live Networks, Inc.  All rights reserved.
 // RTP sink for MPEG video (RFC 2250)
 // Implementation
 
@@ -100,14 +100,12 @@ void MPEG1or2VideoRTPSink
       FBV = BFC = FFV = FFC = 0;
       switch (fPictureState.picture_coding_type) {
       case 3:
-		FBV = (byte8&0x40)>>6;
-		BFC = (byte8&0x38)>>3;
-		break;
+	FBV = (byte8&0x40)>>6;
+	BFC = (byte8&0x38)>>3;
 	// fall through to:
       case 2:
-		FFV = (next4Bytes&0x00000004)>>2;
-		FFC = ((next4Bytes&0x00000003)<<1) | ((byte8&0x80)>>7);
-		break;
+	FFV = (next4Bytes&0x00000004)>>2;
+	FFC = ((next4Bytes&0x00000003)<<1) | ((byte8&0x80)>>7);
       }
 
       fPictureState.vector_code_bits = (FBV<<7) | (BFC<<4) | (FFV<<3) | FFC;
@@ -123,7 +121,7 @@ void MPEG1or2VideoRTPSink
     } else {
       // The first 4 bytes aren't a code that we recognize.
       envir() << "Warning: MPEG1or2VideoRTPSink::doSpecialFrameHandling saw strange first 4 bytes "
-	      << (void*)(&startCode) << ", but we're not a fragment\n";
+	      << (void*)startCode << ", but we're not a fragment\n";
     }
   } else {
     // We're a fragment (other than the first) of a slice.
